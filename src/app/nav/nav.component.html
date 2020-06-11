@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">Aplicativo Notas</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div *ngIf="LoggedIn()" class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Lançamentos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Alunos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" >Professor</a>
+        </li>
+      </ul>
+    </div>
+    <ul *ngIf="LoggedIn()" class="navbar-nav">
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false" style="cursor: pointer">
+        {{authService.decodeToken?.unique_name}}
+      </a>
+      <div *dropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <a class="dropdown-item" >
+          Perfil
+        </a>
+        <div role="separator" class="divider"></div>
+        <a class="dropdown-item" (click) ='Logout()'>
+          Sair
+        </a>
+      </div>
+    </li>
+  </ul>
+  <button *ngIf="!LoggedIn()" class="btn btn-success"(click) = "Entrar()"style="cursor: pointer">Entrar</button>
+</div>
+</nav>

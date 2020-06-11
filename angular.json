@@ -88,7 +88,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           }
@@ -119,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "AplicativoNotasApp"
+    }
+  },
+  "defaultProject": "AplicativoNotasApp",
+  "cli": {
+    "analytics": "7792d97d-6937-4600-a274-7b22a3d639d9"
+  }
 }
