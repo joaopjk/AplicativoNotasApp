@@ -15,6 +15,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule  } from '@angular/common/http';
+import { LancamentosComponent } from './lancamentos/lancamentos.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
    declarations: [
@@ -22,7 +24,8 @@ import { HttpClientModule  } from '@angular/common/http';
       UserComponent,
       LoginComponent,
       RegistrationComponent,
-      NavComponent
+      NavComponent,
+      LancamentosComponent
    ],
    imports: [
       BrowserModule,
@@ -35,6 +38,7 @@ import { HttpClientModule  } from '@angular/common/http';
       CommonModule,
       BrowserAnimationsModule,
       ToastrModule.forRoot(),
+      BsDatepickerModule.forRoot(),
       HttpClientModule
    ],
    providers: [],

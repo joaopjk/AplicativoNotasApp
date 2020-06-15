@@ -1,0 +1,226 @@
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!--Laçamentos Professor-->
+<br>
+<br>
+<router-outlet></router-outlet>
+<div class="container">
+  <form>
+    <div class="row">
+      <div class="col">
+        <div class="form-group col-md-4">
+          <label for = "inputTipo">Disciplina</label>           
+          <select [(ngModel)]="disciplina" name="Disciplina" id="Disciplina" class="form-control" (change)="onSelect($event.target.value)" id="sel1">
+            <option selected>Escolher...</option>
+            <option *ngFor="let disciplina of disciplinas" [value]="disciplina.descDisciplina">{{disciplina.descDisciplina}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group col-md-4">
+          <label for = "inputTipo">Turma</label>
+          <select [(ngModel)]="turma" name="Turma" id="inputTipo" class="form-control" (change)="onSelect2($event.target.value)" id="sel1">
+            <option selected>Escolher...</option>
+            <option *ngFor="let turma of turmas" [value]="turma.nome">{{turma.nome}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<!--Cabeçalho-->
+<br>
+<br>
+<div class="container">
+  <div class="d-flex">
+    <div>
+      <button class="btn btn-outline-success " (click)="openModal(template)">
+        <i class="fa fa-plus-circle"></i>
+        Novo Lançamento
+      </button>      
+    </div>
+  </div>
+</div>
+<br>
+<!--Cabeçalho-->
+<!--Lista-->
+<div class="container">
+  <table class="table table-hover" >
+    <thead class="thead-dark">
+      <tr>
+        <th style="display:none;"> Id</th>
+        <th style="width: 20%">MatriculaId</th>
+        <th>Nome</th>
+        <th>Opções</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="alunos && alunos.length" id="Aluno">
+      <tr class="table-light" *ngFor="let aluno of alunos">
+        <td class="table-light">{{aluno.matriculaId}}</td>
+        <td class="table-light">{{aluno.nome}}</td>
+        <td>
+          <div class = "btn-group">
+            <button class="btn btn-sm btn-success" 
+            tooltip="Incluir Lançamento" >
+            <i class= "fa fa-edit"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<!--Corpo-->
+<!--Modal-->
+<div bsModal #template="bs-modal" class="modal fade" tabindex="-1"
+role="dialog" aria-labelledby="dialog-sizes-name1">
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">    
+    <div class="modal-header">
+      <h5 class="modal-title h4" id="exampleModalLgLabel">Lançamentos</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"(click)="closeModal(template)">
+        <span aria-hidden="true">x</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+        <form [formGroup]="registerForm" *ngIf="this.registerForm">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label style="display:none;">Id</label>
+              <input style ="display:none;" type="text" class="form-control" formControlName="id">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Descrição Lançamento</label>
+              <input type="text" class="form-control " 
+              [ngClass]= "{'is-invalid': registerForm.get('descLancamento').errors && registerForm.get('descLancamento').touched}" 
+              formControlName="descLancamento">
+              <div class="invalid-feedback">
+                A desrição do lancamento é obrigatório !
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-2">
+              <label>Nota</label>
+              <input type="text" class="form-control "
+              [ngClass]= "{'is-invalid': registerForm.get('nota').errors && registerForm.get('nota').touched}"
+              formControlName="nota">
+              <div class="invalid-feedback">
+                Nota é obrigatório !
+              </div>
+            </div>
+            <div class="form-group col-md-2">
+              <label>Nota Total</label>
+              <input type="text" class="form-control "
+              [ngClass]= "{'is-invalid': registerForm.get('notaTotal').errors && registerForm.get('notaTotal').touched}"
+              formControlName="notaTotal">
+              <div class="invalid-feedback">
+                Nota Total é obrigatório !
+              </div>
+            </div>    
+          </div>    
+          <div class="form-row">
+            <div class="form-group col-md-2">
+              <label>Aluno ID</label>
+              <input type="text" class="form-control" formControlName="alunoId">
+            </div>
+            <div class="form-group col-md-2">
+              <label>Disciplina ID</label>
+              <input type="text" class="form-control"formControlName="disciplinaId">
+            </div>
+          </div>  
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for = "inputTipo">Tipo de Lançamento</label>
+              <select id="inputTipo" class="form-control" formControlName ="select"  (change)="onSelect3($event.target.value)" id="sel1">
+                <option selected>Escolher...</option>
+                <option>Trabalho</option>
+                <option>Prova</option>
+              </select>
+            </div>
+            <div class="form-group col-md-3" container="">
+              <label>Data de Lançamento</label>
+              <input type="text" class="form-control "
+              bsDatepicker
+              [ngClass]= "{'is-invalid': registerForm.get('dataLancamento').errors && registerForm.get('dataLancamento').touched}"
+              id="DataLancamentos" formControlName="dataLancamento" >
+              <div class="invalid-feedback">
+                Data de lancamento é obrigatório !
+              </div>
+            </div>
+          </div>  
+        </form>
+        <br>
+        <br>
+        <button class="btn btn-secondary" (click)="openModal(template)">
+          Fechar
+        </button>
+        <button class="btn btn-success" (click)="salvarAlteracao(template)">
+          Salvar Alterações
+        </button>
+        <br>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!--Modal-->
+
+
+<!--Editar Lançamentos-->
+<div class="container">
+  <div class="d-flex">
+    <div>
+      <button class="btn btn-outline-success " (click)="operLancamentos()">
+        <i class="fa fa-plus-circle"></i>
+        Editar Lançamentos
+      </button>      
+    </div>
+  </div>
+</div>
+<br>
+<!--Lista-->
+<div class="container">
+  <table class="table table-hover ">
+    <thead class="thead-dark">
+      <tr>
+        <th>Descrição Lançamentos</th>
+        <th style="width: 12%">Nota</th>
+        <th style="width: 12%">Nota Total</th>
+        <th style="width: 12%">AlunoId</th>
+        <th style="width: 12%">DisciplinaId</th>
+        <th style="width: 10%">Tipo</th>
+        <th>Data Lançamento</th>
+        <th>Opções</th>
+      </tr>
+    </thead>
+    <tbody class ="table-light" *ngIf="lancamentos && lancamentos.length">
+      <tr class="table-light" *ngFor="let lancamento of lancamentos">
+        <th>{{lancamento.descLancamento}}</th>
+        <th style="width: 12%">{{lancamento.nota}}</th>
+        <th style="width: 12%">{{lancamento.notaTotal}}</th>
+        <th style="width: 12%">{{lancamento.alunoId}}</th>
+        <th style="width: 12%">{{lancamento.disciplinaId}}</th>
+        <th style="width: 10%">{{lancamento.tipo}}</th>
+        <th>{{lancamento.dataLancamento}}</th>
+        <td>
+          <div class = "btn-group">
+            <button class="btn btn-sm btn-success" 
+            tooltip="Editar" (click)="editarLancamento(lancamento,template)">
+            <i class= "fa fa-edit"></i>
+          </button>
+          <button class="btn btn-sm btn-danger" tooltip="Excluir">
+            <i  class="fa fa-eraser"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<!--Lista-->

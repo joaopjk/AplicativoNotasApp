@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {map} from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -9,6 +10,7 @@ export class AuthService {
  baseUrl = 'https://localhost:44324/api/autenticacao/';
  jwtHelper = new JwtHelperService();
  decodeToken: any ;
+ declare MatriculaId: any ;
 constructor(private http: HttpClient) { }
 login(model: any) {
   return this.http
@@ -18,6 +20,8 @@ login(model: any) {
       if (user){
         localStorage.setItem('token', user.token);
         this.decodeToken = this.jwtHelper.decodeToken(user.token);
+        this.MatriculaId = user.matriculaId;
+        console.log(user);
       }
     })
   );

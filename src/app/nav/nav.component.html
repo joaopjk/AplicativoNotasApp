@@ -7,6 +7,9 @@
     
     <div *ngIf="LoggedIn()" class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
+       <li class="nav-item active">
+          <a class="nav-link" href="#">Principal</a>
+        </li>
         <li class="nav-item active">
           <a class="nav-link" href="#">Lançamentos</a>
         </li>
@@ -22,7 +25,7 @@
       <li class="nav-item dropdown" dropdown>
         <a dropdownToggle class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false" style="cursor: pointer">
-        {{authService.decodeToken?.unique_name}}
+        {{authService.MatriculaId}}
       </a>
       <div *dropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
         <a class="dropdown-item" >
