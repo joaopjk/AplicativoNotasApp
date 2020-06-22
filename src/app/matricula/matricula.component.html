@@ -1,0 +1,56 @@
+<router-outlet></router-outlet>
+<div class="container">
+<br>
+<div class="row mt-4">
+  <div class="col-md-4" style="height: 450px;">
+    <div class="row col-md-12 my-auto side-heder">
+      <h1>Cadastro de Matricula</h1>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <form [formGroup]="registerForm">
+      <br/>
+      <div class="form-group required">
+        <label for="">Tipo de matrícula:</label>
+        <input type="text" class="form-control" formControlName="TipoMatricula"
+        [ngClass]="{'is-invalid': registerForm.get('TipoMatricula').errors &&
+                                  registerForm.get('TipoMatricula').touched }"
+          placeholder="Insira o tipo de matrícula"/>
+        <div *ngIf="registerForm.get('TipoMatricula').hasError('required') &&
+                    registerForm.get('TipoMatricula').touched"
+          class="invalid-feedback">
+          Tipo é obrigatório.
+        </div>
+      </div>
+         <div class="form-row">
+        <div class="form-group col-md-8 offset-md-2">
+          <button class="btn btn-lg btn-success btn-block"
+          (click)="cadastrarMatricula()">Cadastrar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="container">
+  <table class="table table-hover" >
+    <thead class="thead-dark">
+      <tr>
+        <th style="display:none;"> Id</th>
+        <th style="width: 20%">MatriculaId</th>
+        <th>Nome</th>
+        <th>Curso</th>
+      </tr>
+    </thead>
+    <tbody  id="Aluno">
+      <tr class="table-light" >
+        <td class="table-light"></td>
+        <td class="table-light"></td>
+        <td>
+          <div class = "btn-group">
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>

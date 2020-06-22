@@ -1,0 +1,52 @@
+<router-outlet></router-outlet>
+<div class="container">
+<br>
+<div class="row mt-4">
+  <div class="col-md-4" style="height: 450px;">
+    <div class="row col-md-12 my-auto side-heder">
+      <h1>Cadastro de Disciplina</h1>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <form [formGroup]="registerForm">
+      <br/>
+      <div class="form-group required">
+        <label for="">Descrição:</label>
+        <input type="text" class="form-control" formControlName="Descricao"
+        [ngClass]="{'is-invalid': registerForm.get('Descricao').errors &&
+                                  registerForm.get('Descricao').touched }"
+          placeholder="Insira a descrição do curso"/>
+        <div *ngIf="registerForm.get('Descricao').hasError('required') &&
+                    registerForm.get('Descricao').touched"
+          class="invalid-feedback">
+          Descricao é obrigatório.
+        </div>
+      </div>
+      <div>
+        <label for="">Professor:</label>
+       <select class="form-control" name="ProfessorId" type="number"formControlName="ProfessorId" >
+        <option value="0">Selecione o Professor</option>
+         <option *ngFor ="let professor of professores" value={{professor.Id}}>
+           {{professor.Nome}}
+         </option>
+       </select>
+      </div> <br/>
+      <div>
+        <label for="">Turma:</label>
+       <select class="form-control" name="TurmaId" type="number"formControlName="TurmaId" >
+        <option value="0">Selecione a turma</option>
+         <option *ngFor ="let turma of turmas" value={{turma.id}}>
+           {{turma.nome}}
+         </option>
+       </select>
+      </div> <br/>
+      <div class="form-row">
+        <div class="form-group col-md-8 offset-md-2">
+          <button class="btn btn-lg btn-success btn-block"
+          (click)="cadastrarDisciplina()">Cadastrar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</div>

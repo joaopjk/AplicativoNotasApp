@@ -17,6 +17,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule  } from '@angular/common/http';
 import { LancamentosComponent } from './lancamentos/lancamentos.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { AlunoComponent } from './aluno/aluno.component';
+import { CursoComponent } from './curso/curso.component';
+import { DisciplinaComponent } from './disciplina/disciplina.component';
+import { MatriculaComponent } from './matricula/matricula.component';
+import { ProfessorComponent } from './professor/professor.component';
+import { PrincipalComponent } from './principal/principal.component';
 
 @NgModule({
    declarations: [
@@ -25,7 +31,13 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
       LoginComponent,
       RegistrationComponent,
       NavComponent,
-      LancamentosComponent
+      LancamentosComponent,
+      AlunoComponent,
+      CursoComponent,
+      DisciplinaComponent,
+      MatriculaComponent,
+      ProfessorComponent,
+      PrincipalComponent
    ],
    imports: [
       BrowserModule,

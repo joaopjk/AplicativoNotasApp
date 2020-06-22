@@ -1,0 +1,65 @@
+<router-outlet></router-outlet>
+<div class="container">
+  <br>
+  <div class="row mt-4">
+    <div class="col-md-4" style="height: 450px;">
+      <div class="row col-md-12 my-auto side-heder">
+        <h1>Cadastro de Professor</h1>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <form [formGroup]="registerForm">
+        <br/>
+        <div class="form-group required">
+          <label for="">Nome:</label>
+          <input type="text" class="form-control" formControlName="Nome"
+          [ngClass]="{'is-invalid': registerForm.get('Nome').errors &&
+          registerForm.get('Nome').touched }"
+          placeholder="Insira um nome completo"/>
+          <div *ngIf="registerForm.get('Nome').hasError('required') &&
+          registerForm.get('Nome').touched"
+          class="invalid-feedback">
+          Nome é obrigatório.
+        </div>
+      </div>
+      <div>
+        <label for="">Matricula:</label>
+        <select class="form-control" name="MatriculaId" type="number"formControlName="MatriculaId" >
+          <option value="0">Selecione o tipo de Matricula</option>
+          <option *ngFor ="let matricula of matriculas" value={{matricula.Id}}>
+            {{matricula.Tipo}}
+          </option>
+        </select>
+      </div> <br/>
+      <div class="form-row">
+        <div class="form-group col-md-8 offset-md-2">
+          <button class="btn btn-lg btn-success btn-block"
+          (click)="cadastrarProfessor()">Cadastrar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="container">
+  <table class="table table-hover" >
+    <thead class="thead-dark">
+      <tr>
+        <th style="display:none;"> Id</th>
+        <th style="width: 20%">MatriculaId</th>
+        <th>Nome</th>
+        <th>Curso</th>
+      </tr>
+    </thead>
+    <tbody  id="Aluno">
+      <tr class="table-light" >
+        <td class="table-light"></td>
+        <td class="table-light"></td>
+        <td>
+          <div class = "btn-group">
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
